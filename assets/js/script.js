@@ -37,14 +37,17 @@ var timeBlockArray = [
   time6P,
 ];
 
-timeBlockStatus();
-function timeBlockStatus() {
+// Save buttons
+var saveBtn = document.getElementsByClassName("saveBtn");
+console.log(saveBtn);
+
+function timeBlockStatus(timeBlockValues) {
   // Assigning a value to all the time blocks
   for (var i = 0; i < timeBlockArray.length; i++) {
     var timeBlockValues = (timeBlockArray[i].value = 8 + i);
     console.log(timeBlockValues);
 
-    // Assigning time block class based on past, present, or future
+    // Assigning time block class based on past, present, or future -- color coded
     if (timeBlockValues == currentTime) {
       timeBlockArray[i].children[1].classList.add("present");
     } else if (timeBlockValues <= currentTime) {
@@ -53,4 +56,29 @@ function timeBlockStatus() {
       timeBlockArray[i].children[1].classList.add("future");
     }
   }
+  createEvent(timeBlockValues);
 }
+
+// Adding new event to time block
+function createEvent(timeBlockValues) {
+  for (var i = 0; i < timeBlockArray.length; i++) {
+    // Event listener to save new event
+    saveBtn[i].addEventListener("click", function (event) {
+      event.preventDefault;
+      // Assigning numerical values to all save buttons
+      for (var i = 0; i < timeBlockArray.length; i++) {
+        var eventTextArea = timeBlockArray[i].children[1];
+        var eventText = eventTextArea.value;
+        console.log(eventText);
+        var saveButtons = timeBlockArray[i].children[2];
+        console.log(saveButtons);
+        var saveBtnValues = (saveButtons = timeBlockArray[i].value);
+        console.log(saveBtnValues);
+
+        localStorage.setItem("eventText", eventText);
+      }
+    });
+  }
+}
+
+timeBlockStatus();
