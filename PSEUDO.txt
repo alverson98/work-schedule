@@ -1,0 +1,61 @@
+ACCEPTANCE CRITERIA:
+
+- the current day is displayed at the top of the calendar
+
+- I am presented with time blocks for standard business hours
+
+- each time block is color-coded to indicate whether it is in the past, present, or future
+
+- I can enter an event
+
+- the text for that event is saved in local storage
+
+- the saved events persist
+
+
+NEED TO DO:
+
+- Add current day to the heading of the page
+
+- Create html divs for the time blocks
+
+CSS STYLE CLASSES ALREADY CREATED:
+
+- time blocks
+    - past = grey (.past)
+    - present = red (.present)
+    - future = green (.future)
+
+- save button .saveBtn 
+
+- hour on left side of time block .hour
+
+
+BRAIN DUMP:
+
+- time blocks need to be inputs to add the event names in the block
+
+- need to save the newly created event when save button is clicked 
+    - .addEventListener --> "click"
+
+- display the new event onto the screen once typed & override previous entry
+    - save the input value to local storage when save button is pressed !!SEE ABOVE!!
+        (localStorage.setItem & localStorage.getItem)
+
+- if/else statement for the save button
+    - if save button is pressed --> save input data in local storage & .textContent to display
+    - if save button is not changed, then don't save to local stoage & do not display
+
+
+- will need if/else statement to declare the time block status if it past/present/future
+    - if time is in the past -- make class .past
+    - if time is in the present -- make class .present
+    - if time is in the future -- make class .future
+
+- will need to declare a variable that is equal to the current time of day
+
+- reminder: use many functions if needed & add parameters to carry over data!!
+
+
+
+
