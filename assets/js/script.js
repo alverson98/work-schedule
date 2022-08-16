@@ -37,19 +37,25 @@ var timeBlockArray = [
   time6P,
 ];
 
-
-// Save buttons
-var saveBtn = $(".saveBtn");
-console.log(saveBtn);
-
 function schedule() {
+  // Click button to save data to local storage
+  $(".saveBtn").click(function () {
+    // Accessing values
+    var textAreaEntry = $(this).siblings(".col-10").val();
+    var timeBlockGuide = $(this).parent().attr("id");
+
+    // Storing data to local storage
+    localStorage.setItem(timeBlockGuide, textAreaEntry);
+  });
+
+  // Making time block past, present, future -- color coded
   function timeStatus() {
     // Assigning a value to all the time blocks
     for (var i = 0; i < timeBlockArray.length; i++) {
       var timeBlockValues = (timeBlockArray[i].value = 8 + i);
       console.log(timeBlockValues);
 
-      // Assigning time block class based on past, present, or future -- color coded
+      // Assigning time block class
       if (timeBlockValues == currentTime) {
         $("textarea").addClass("present");
       } else if (timeBlockValues < currentTime) {
@@ -57,15 +63,9 @@ function schedule() {
       } else {
         $("textarea").addClass("future");
       }
-
-      $(timeBlockArray[i].val(localStorage.getItem(timeBlockArray[i])));
     }
   }
   timeStatus();
-
-  $(".saveBtn").click(function () {
-    
-  });
 }
 
 schedule();
