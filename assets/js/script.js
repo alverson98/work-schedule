@@ -37,6 +37,22 @@ var timeBlockArray = [
   time6P,
 ];
 
+// Text area variables
+var t8 = $("#text-8");
+var t9 = $("#text-9");
+var t10 = $("#text-10");
+var t11 = $("#text-11");
+var t12 = $("#text-12");
+var t13 = $("#text-13");
+var t14 = $("#text-14");
+var t15 = $("#text-15");
+var t16 = $("#text-16");
+var t17 = $("#text-17");
+var t18 = $("#text-18");
+
+// Text Area Arrays
+var textAreaArray = [t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18];
+
 function schedule() {
   // Click button to save data to local storage
   $(".saveBtn").click(function () {
@@ -68,17 +84,17 @@ function schedule() {
   timeStatus();
 
   // Pull data from local storage
-  $("#h8").val(localStorage.getItem("hour8"));
-  $("#h9").val(localStorage.getItem("hour9"));
-  $("#h10").val(localStorage.getItem("hour10"));
-  $("#h11").val(localStorage.getItem("hour11"));
-  $("#h12").val(localStorage.getItem("hour12"));
-  $("#h13").val(localStorage.getItem("hour13"));
-  $("#h14").val(localStorage.getItem("hour14"));
-  $("#h15").val(localStorage.getItem("hour15"));
-  $("#h16").val(localStorage.getItem("hour16"));
-  $("#h17").val(localStorage.getItem("hour17"));
-  $("#h18").val(localStorage.getItem("hour18"));
+  var h8 = $("#h8").val(localStorage.getItem("h8"));
+  var h9 = $("#h9").val(localStorage.getItem("h9"));
+  var h10 = $("#h10").val(localStorage.getItem("h10"));
+  var h11 = $("#h11").val(localStorage.getItem("h11"));
+  var h12 = $("#h12").val(localStorage.getItem("h12"));
+  var h13 = $("#h13").val(localStorage.getItem("h13"));
+  var h14 = $("#h14").val(localStorage.getItem("h14"));
+  var h15 = $("#h15").val(localStorage.getItem("h15"));
+  var h16 = $("#h16").val(localStorage.getItem("h16"));
+  var h17 = $("#h17").val(localStorage.getItem("h17"));
+  var h18 = $("#h18").val(localStorage.getItem("h18"));
 }
 
 schedule();
