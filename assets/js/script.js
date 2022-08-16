@@ -7,20 +7,19 @@ $("#currentDay").text(currentDay.format("MMM Do, YYYY"));
 
 // Current Time - 24hr
 var currentTime = moment().format("HH");
-console.log(currentTime);
 
 // Time Blocks Divs 8am-6pm
-var time8A = document.getElementById("8a");
-var time9A = document.getElementById("9a");
-var time10A = document.getElementById("10a");
-var time11A = document.getElementById("11a");
-var time12A = document.getElementById("12p");
-var time1P = document.getElementById("1p");
-var time2P = document.getElementById("2p");
-var time3P = document.getElementById("3p");
-var time4P = document.getElementById("4p");
-var time5P = document.getElementById("5p");
-var time6P = document.getElementById("6p");
+var time8A = $("#8a");
+var time9A = $("#9a");
+var time10A = $("#10a");
+var time11A = $("#11a");
+var time12A = $("#12p");
+var time1P = $("#1p");
+var time2P = $("#2p");
+var time3P = $("#3p");
+var time4P = $("#4p");
+var time5P = $("#5p");
+var time6P = $("#6p");
 
 // Time Block Array
 var timeBlockArray = [
@@ -38,7 +37,7 @@ var timeBlockArray = [
 ];
 
 // Save buttons
-var saveBtn = document.getElementsByClassName("saveBtn");
+var saveBtn = $(".saveBtn");
 console.log(saveBtn);
 
 function timeBlockStatus(timeBlockValues) {
@@ -49,36 +48,26 @@ function timeBlockStatus(timeBlockValues) {
 
     // Assigning time block class based on past, present, or future -- color coded
     if (timeBlockValues == currentTime) {
-      timeBlockArray[i].children[1].classList.add("present");
-    } else if (timeBlockValues <= currentTime) {
-      timeBlockArray[i].children[1].classList.add("past");
+      $("textarea").addClass("present");
+    } else if (timeBlockValues < currentTime) {
+      $("textarea").addClass("past");
     } else {
-      timeBlockArray[i].children[1].classList.add("future");
+      $("textarea").addClass("future");
     }
   }
-  createEvent(timeBlockValues);
 }
 
 // Adding new event to time block
-function createEvent(timeBlockValues) {
-  for (var i = 0; i < timeBlockArray.length; i++) {
-    // Event listener to save new event
-    saveBtn[i].addEventListener("click", function (event) {
-      event.preventDefault;
-      // Assigning numerical values to all save buttons
-      for (var i = 0; i < timeBlockArray.length; i++) {
-        var eventTextArea = timeBlockArray[i].children[1];
-        var eventText = eventTextArea.value;
-        console.log(eventText);
-        var saveButtons = timeBlockArray[i].children[2];
-        console.log(saveButtons);
-        var saveBtnValues = (saveButtons = timeBlockArray[i].value);
-        console.log(saveBtnValues);
+function handleFormSubmit(event) {
+  event.preventDefault();
 
-        localStorage.setItem("eventText", eventText);
-      }
-    });
-  }
+  var selectBtnTarget = $(event.currentTarget);
+
+  var eventTextTarget = selectBtnTarget.siblings("textarea");
+
+  localStorage.setItem("eventText", eventTextTarget.val());
 }
+
+saveBtn.on("click", handleFormSubmit);
 
 timeBlockStatus();
