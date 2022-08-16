@@ -66,6 +66,19 @@ function schedule() {
     }
   }
   timeStatus();
+
+  // Pull data from local storage
+  $("#h8").val(localStorage.getItem("hour8"));
+  $("#h9").val(localStorage.getItem("hour9"));
+  $("#h10").val(localStorage.getItem("hour10"));
+  $("#h11").val(localStorage.getItem("hour11"));
+  $("#h12").val(localStorage.getItem("hour12"));
+  $("#h13").val(localStorage.getItem("hour13"));
+  $("#h14").val(localStorage.getItem("hour14"));
+  $("#h15").val(localStorage.getItem("hour15"));
+  $("#h16").val(localStorage.getItem("hour16"));
+  $("#h17").val(localStorage.getItem("hour17"));
+  $("#h18").val(localStorage.getItem("hour18"));
 }
 
 schedule();
