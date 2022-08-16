@@ -4,6 +4,7 @@
 var currentDay = moment();
 // Displaying current date
 $("#currentDay").text(currentDay.format("MMM Do, YYYY"));
+console.log(currentDay);
 
 // Current Time - 24hr
 var currentTime = moment().format("HH");
@@ -53,48 +54,53 @@ var t18 = $("#text-18");
 // Text Area Arrays
 var textAreaArray = [t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18];
 
-function schedule() {
-  // Click button to save data to local storage
-  $(".saveBtn").click(function () {
-    // Accessing values
-    var textAreaEntry = $(this).siblings(".col-10").val();
-    var timeBlockGuide = $(this).parent().attr("id");
+timeStatus();
 
-    // Storing data to local storage
-    localStorage.setItem(timeBlockGuide, textAreaEntry);
-  });
+// Making time block past, present, future -- color coded
+function timeStatus() {
+  // looping through all of the time blocks
+  $(".time-block").each(function () {
+    var timeBlock = parseInt($(this).attr("id").split("h")[1]);
+    console.log(timeBlock);
 
-  // Making time block past, present, future -- color coded
-  function timeStatus() {
-    // Assigning a value to all the time blocks
-    for (var i = 0; i < timeBlockArray.length; i++) {
-      var timeBlockValues = (timeBlockArray[i].value = 8 + i);
-      console.log(timeBlockValues);
+    console.log(currentTime);
 
-      // Assigning time block class
-      if (timeBlockValues == currentTime) {
-        $("textarea").addClass("present");
-      } else if (timeBlockValues < currentTime) {
-        $("textarea").addClass("past");
-      } else {
-        $("textarea").addClass("future");
-      }
+    // if statement to determine if time is past, present, or future
+    if (timeBlock == currentTime) {
+      $(this).children("textarea").removeClass("past");
+      $(this).children("textarea").addClass("present");
+      $(this).children("textarea").removeClass("future");
+    } else if (timeBlock < currentTime) {
+      $(this).children("textarea").addClass("past");
+      $(this).children("textarea").removeClass("future");
+      $(this).children("textarea").removeClass("present");
+    } else {
+      $(this).children("textarea").addClass("future");
+      $(this).children("textarea").removeClass("present");
+      $(this).children("textarea").removeClass("past");
     }
-  }
-  timeStatus();
-
-  // Pull data from local storage
-  var h8 = $("#h8").val(localStorage.getItem("h8"));
-  var h9 = $("#h9").val(localStorage.getItem("h9"));
-  var h10 = $("#h10").val(localStorage.getItem("h10"));
-  var h11 = $("#h11").val(localStorage.getItem("h11"));
-  var h12 = $("#h12").val(localStorage.getItem("h12"));
-  var h13 = $("#h13").val(localStorage.getItem("h13"));
-  var h14 = $("#h14").val(localStorage.getItem("h14"));
-  var h15 = $("#h15").val(localStorage.getItem("h15"));
-  var h16 = $("#h16").val(localStorage.getItem("h16"));
-  var h17 = $("#h17").val(localStorage.getItem("h17"));
-  var h18 = $("#h18").val(localStorage.getItem("h18"));
+  });
 }
 
-schedule();
+// Click button to save data to local storage
+$(".saveBtn").click(function () {
+  // Accessing values
+  var textAreaEntry = $(this).siblings(".col-10").val();
+  var timeBlockGuide = $(this).parent().attr("id");
+
+  // Storing data to local storage
+  localStorage.setItem(timeBlockGuide, textAreaEntry);
+});
+
+// Pull data from local storage
+var h8 = $("#h8").val(localStorage.getItem("h8"));
+var h9 = $("#h9").val(localStorage.getItem("h9"));
+var h10 = $("#h10").val(localStorage.getItem("h10"));
+var h11 = $("#h11").val(localStorage.getItem("h11"));
+var h12 = $("#h12").val(localStorage.getItem("h12"));
+var h13 = $("#h13").val(localStorage.getItem("h13"));
+var h14 = $("#h14").val(localStorage.getItem("h14"));
+var h15 = $("#h15").val(localStorage.getItem("h15"));
+var h16 = $("#h16").val(localStorage.getItem("h16"));
+var h17 = $("#h17").val(localStorage.getItem("h17"));
+var h18 = $("#h18").val(localStorage.getItem("h18"));
